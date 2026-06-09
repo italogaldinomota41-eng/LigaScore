@@ -102,3 +102,5 @@ const api = new APIClient();
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { APIClient, api };
 }
+
+window.api = api;
