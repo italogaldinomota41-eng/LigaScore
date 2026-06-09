@@ -1,0 +1,11 @@
+{
+  "buildCommand": "echo 'Static files only'",
+  "outputDirectory": "public",
+  "framework": "html",
+  "functions": {
+    "public/**/*.html": {
+      "memory": 128,
+      "maxDuration": 60
+    }
+  }
+}

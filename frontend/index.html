@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LigaScore - Brasileirão Série Z</title>
+    <link rel="stylesheet" href="src/css/style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="header">
+            <div>
+                <h1>LigaScore</h1>
+                <p class="subtitle">Brasileirão Série Z - Taça BetTigrinho</p>
+            </div>
+        </header>
+
+        <nav class="nav" aria-label="Navegação principal">
+            <button class="nav-btn active" type="button" data-view="standings">Tabela do Campeonato</button>
+            <button class="nav-btn" type="button" data-view="match">Registrar Partida</button>
+        </nav>
+
+        <main class="content">
+            <section id="standings-view" class="view active">
+                <div class="section-heading">
+                    <h2>Tabela de Classificação</h2>
+                    <span class="season-pill">20 clubes</span>
+                </div>
+
+                <div id="standings-loading" class="loading">Carregando dados...</div>
+                <div id="standings-error" class="error" style="display:none;"></div>
+
+                <div class="table-panel">
+                    <table id="standings-table" class="standings-table" style="display:none;">
+                        <thead>
+                            <tr>
+                                <th>Pos.</th>
+                                <th>Time</th>
+                                <th>PTS</th>
+                                <th>J</th>
+                                <th>V</th>
+                                <th>E</th>
+                                <th>D</th>
+                                <th>GF</th>
+                                <th>GA</th>
+                                <th>SG</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standings-body"></tbody>
+                    </table>
+                </div>
+
+                <div id="classification-legend" class="legend" aria-label="Legenda da classificação">
+                    <div class="legend-item legend-blue"><span class="legend-swatch"></span>1º ao 4º: Glória Eterna da Várzea</div>
+                    <div class="legend-item legend-orange"><span class="legend-swatch"></span>5º ao 6º: Pré-Liberta da Ilusão</div>
+                    <div class="legend-item legend-green"><span class="legend-swatch"></span>7º ao 12º: Copa Sul-Bagricana</div>
+                    <div class="legend-item legend-gray"><span class="legend-swatch"></span>13º ao 16º: Zona do Ufa!</div>
+                    <div class="legend-item legend-red"><span class="legend-swatch"></span>17º ao 20º: Série Z2 no Pix</div>
+                </div>
+
+                <div id="team-modal" class="modal hidden">
+                    <div class="modal-backdrop"></div>
+                    <div class="modal-dialog">
+                        <button class="modal-close" type="button" aria-label="Fechar modal">x</button>
+                        <div class="modal-content">
+                            <h3 id="modal-team-name"></h3>
+                            <div id="modal-team-stats"></div>
+                            <h4>Últimas partidas</h4>
+                            <ul id="modal-team-matches"></ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="match-view" class="view">
+                <div class="section-heading">
+                    <h2>Registrar Partida</h2>
+                    <span class="season-pill">Painel premium</span>
+                </div>
+
+                <form id="match-form" class="match-form">
+                    <div class="match-arena">
+                        <article class="match-team-card">
+                            <span class="card-label">Mandante</span>
+                            <label for="team1">Time 1</label>
+                            <select id="team1" required>
+                                <option value="">Selecione um time...</option>
+                            </select>
+
+                            <div class="score-control" aria-label="Placar do time 1">
+                                <button type="button" class="score-btn dec" data-for="1" aria-label="Diminuir gols do time 1">-</button>
+                                <div class="score" id="score1">0</div>
+                                <button type="button" class="score-btn inc" data-for="1" aria-label="Aumentar gols do time 1">+</button>
+                            </div>
+                        </article>
+
+                        <div class="vs-badge" aria-hidden="true">VS</div>
+
+                        <article class="match-team-card">
+                            <span class="card-label">Visitante</span>
+                            <label for="team2">Time 2</label>
+                            <select id="team2" required>
+                                <option value="">Selecione um time...</option>
+                            </select>
+
+                            <div class="score-control" aria-label="Placar do time 2">
+                                <button type="button" class="score-btn dec" data-for="2" aria-label="Diminuir gols do time 2">-</button>
+                                <div class="score" id="score2">0</div>
+                                <button type="button" class="score-btn inc" data-for="2" aria-label="Aumentar gols do time 2">+</button>
+                            </div>
+                        </article>
+                    </div>
+
+                    <div class="events-panel">
+                        <label for="events">Eventos / substituições (opcional)</label>
+                        <textarea id="events" rows="3" placeholder="Ex: 23' gol do camisa 10; 60' substituição"></textarea>
+                    </div>
+
+                    <button type="submit" class="register-btn">Registrar Partida</button>
+                </form>
+
+                <div id="match-message" class="message" style="display:none;"></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>LigaScore v3.0 - MVC, camadas e tabela sem sofrimento</p>
+        </footer>
+    </div>
+
+    <script src="src/js/api.js"></script>
+    <script src="src/js/app.js"></script>
+</body>
+</html>
