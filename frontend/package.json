@@ -4,9 +4,12 @@
   "description": "Front-end para Plataforma de Estatísticas de Futebol",
   "type": "module",
   "scripts": {
-    "dev": "python -m http.server 5173",
-    "build": "echo 'No build step needed for pure HTML/CSS/JS'",
-    "start": "python -m http.server 8080"
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview --host 0.0.0.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
   },
   "keywords": [
     "futebol",

@@ -3,8 +3,8 @@
  * Módulo para fazer requisições REST à API do back-end
  */
 
-// URL base da API (fixada para ambiente browser)
-const API_URL = "http://localhost:8000";
+const DEFAULT_API_URL = "http://localhost:8000";
+const API_URL = (import.meta.env?.VITE_API_URL || DEFAULT_API_URL).replace(/\/$/, "");
 
 /**
  * Classe APIClient
